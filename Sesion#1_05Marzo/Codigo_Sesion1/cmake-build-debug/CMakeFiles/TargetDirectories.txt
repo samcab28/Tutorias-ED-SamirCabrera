@@ -1,0 +1,3 @@
+/home/samir-cabrera/projects/universidad/tutoriasED/Tutorias-ED-SamirCabrera/Sesion#1_05Marzo/Codigo_Sesion1/cmake-build-debug/CMakeFiles/Codigo_Sesion1.dir
+/home/samir-cabrera/projects/universidad/tutoriasED/Tutorias-ED-SamirCabrera/Sesion#1_05Marzo/Codigo_Sesion1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/samir-cabrera/projects/universidad/tutoriasED/Tutorias-ED-SamirCabrera/Sesion#1_05Marzo/Codigo_Sesion1/cmake-build-debug/CMakeFiles/rebuild_cache.dir

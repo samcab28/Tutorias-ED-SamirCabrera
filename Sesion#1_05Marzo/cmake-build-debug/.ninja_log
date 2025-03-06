@@ -1,6 +1,0 @@
-# ninja log v6
-6	136	1741230904884495449	build.ninja	779af5bcb6c290fd
-2	1332	1741230904920495599	CMakeFiles/Sesion_1_05Marzo.dir/main.cpp.o	dca17ba7a697ffc3
-7	1338	1741230904925495619	CMakeFiles/Sesion_1_05Marzo.dir/lista_simple.cpp.o	57b5503e6920fd77
-6	1340	1741230904924495615	CMakeFiles/Sesion_1_05Marzo.dir/lista_circular.cpp.o	b6be5c6f1b23addb
-1341	1483	1741230906259501170	Sesion_1_05Marzo	db2e65c930d9621f
