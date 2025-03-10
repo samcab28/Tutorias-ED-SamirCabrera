@@ -1,6 +1,6 @@
 # ninja log v6
-3	136	1741232384718714228	build.ninja	d6e025824538838b
+3	136	1741232604479536479	build.ninja	d6e025824538838b
 1	1580	1741232384740708133	CMakeFiles/Codigo_Sesion1.dir/main.cpp.o	4502442608edb470
-2	1583	1741232384741707856	CMakeFiles/Codigo_Sesion1.dir/lista_simple.cpp.o	4f63ebe7147fad03
 3	1585	1741232384742707579	CMakeFiles/Codigo_Sesion1.dir/lista_circular.cpp.o	28952dc0221a4691
+2	1583	1741232384741707856	CMakeFiles/Codigo_Sesion1.dir/lista_simple.cpp.o	4f63ebe7147fad03
 1585	1829	1741232386328271360	Codigo_Sesion1	b46e0ebd6ac39173
