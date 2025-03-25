@@ -1,0 +1,17 @@
+# ninja log v6
+41	2460	1742877662756286762	CMakeFiles/Codigo_Sesion4.dir/lista_simple.cpp.o	67aeeb0754dce64b
+1154	1332	1742881753975788933	Codigo_Sesion4	5649796bacd4c4d4
+17	1900	1742878292645616560	CMakeFiles/Codigo_Sesion4.dir/file_handler.cpp.o	37306ee9f9e958d4
+17	3408	1742881403738547897	CMakeFiles/Codigo_Sesion4.dir/hash_file_handler.cpp.o	2c7cbeb0cc6b7a24
+15	1355	1742882038023903696	CMakeFiles/Codigo_Sesion4.dir/main.cpp.o	b3569d0365fa4fdb
+275	453	1742882056247185354	build.ninja	cfae3d0fb93eaeee
+20	3517	1742881403740547963	CMakeFiles/Codigo_Sesion4.dir/hash_table.cpp.o	4153c5536c8f2cd5
+1	58	1742882056247185354	build.ninja	cfae3d0fb93eaeee
+2	825	1742882056260185554	CMakeFiles/Codigo_Sesion4.dir/sistema_restaurante.cpp.o	4acf24c5a823f779
+825	934	1742882057083198167	Codigo_Sesion4	b003fbebea0b837e
+3	1206	1742882214298455176	CMakeFiles/Codigo_Sesion4.dir/main.cpp.o	b3569d0365fa4fdb
+1207	1370	1742882215502471407	Codigo_Sesion4	b003fbebea0b837e
+3	1445	1742882255196998635	CMakeFiles/Codigo_Sesion4.dir/main.cpp.o	b3569d0365fa4fdb
+1445	1620	1742882256637017482	Codigo_Sesion4	b003fbebea0b837e
+3	1165	1742882281240336604	CMakeFiles/Codigo_Sesion4.dir/main.cpp.o	b3569d0365fa4fdb
+1165	1332	1742882282402351543	Codigo_Sesion4	b003fbebea0b837e
