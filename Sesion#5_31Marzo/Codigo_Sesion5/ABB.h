@@ -1,49 +1,32 @@
 #ifndef ABB_H
 #define ABB_H
-
 #include <iostream>
 #include <string>
-#include <queue>
-#include <iomanip>
+using namespace std;
 
-// Estructura del nodo del árbol
-template <typename T>
-struct Nodo {
-    T dato;
-    Nodo<T>* izquierda;
-    Nodo<T>* derecha;
-
-    Nodo(const T& valor) : dato(valor), izquierda(nullptr), derecha(nullptr) {}
-};
-
-// Clase del Árbol Binario de Búsqueda
-template <typename T>
-class ABB {
-private:
-    Nodo<T>* raiz;
-
-    // Métodos auxiliares privados
-    Nodo<T>* insertar(Nodo<T>* nodo, const T& valor);
-    Nodo<T>* buscar(Nodo<T>* nodo, const T& valor);
-    void inOrden(Nodo<T>* nodo);
-    void preOrden(Nodo<T>* nodo);
-    void postOrden(Nodo<T>* nodo);
-    Nodo<T>* eliminar(Nodo<T>* nodo, const T& valor);
-    Nodo<T>* encontrarMinimo(Nodo<T>* nodo);
-    void destruir(Nodo<T>* nodo);
-
-    // Métodos para visualización
-    int altura(Nodo<T>* nodo);
-    void imprimirNivel(Nodo<T>* nodo, int nivel, int espacio);
-
+// Clase para el nodo del árbol
+class nodoArbol {
 public:
-    ABB();
-    ~ABB();
+    nodoArbol(int valor);
+    nodoArbol(int valor, nodoArbol* izq, nodoArbol* der);
+private:
+    int valor;
+    nodoArbol* izquierda;
+    nodoArbol* derecha;
+    friend class ArbolBinarioBusqueda;
+};
+typedef nodoArbol* pnodoArbol;
+
+// Clase para el Árbol Binario de Búsqueda
+class ArbolBinarioBusqueda {
+public:
+    ArbolBinarioBusqueda();
+    ~ArbolBinarioBusqueda();
 
     // Operaciones básicas
-    void insertar(const T& valor);
-    bool buscar(const T& valor);
-    void eliminar(const T& valor);
+    void insertar(int valor);
+    bool buscar(int valor);
+    void eliminar(int valor);
 
     // Métodos de visualización
     void mostrarInOrden();
@@ -54,9 +37,23 @@ public:
     // Visualización interactiva
     void visualizarArbol();
     void visualizarArbolDetallado();
-};
 
-// Incluimos la implementación aquí porque es una plantilla
-#include "ABB.cpp"
+private:
+    pnodoArbol raiz;
+
+    // Métodos auxiliares privados
+    pnodoArbol insertar(pnodoArbol nodo, int valor);
+    pnodoArbol buscar(pnodoArbol nodo, int valor);
+    void inOrden(pnodoArbol nodo);
+    void preOrden(pnodoArbol nodo);
+    void postOrden(pnodoArbol nodo);
+    pnodoArbol eliminar(pnodoArbol nodo, int valor);
+    pnodoArbol encontrarMinimo(pnodoArbol nodo);
+    void destruir(pnodoArbol nodo);
+
+    // Métodos para visualización
+    int altura(pnodoArbol nodo);
+    void imprimirNivel(pnodoArbol nodo, int nivel, int espacio);
+};
 
 #endif // ABB_H

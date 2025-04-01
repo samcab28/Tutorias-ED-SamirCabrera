@@ -1,26 +1,25 @@
-#ifndef ABB_CPP
-#define ABB_CPP
-
 #include "ABB.h"
 #include <iostream>
 #include <iomanip>
 #include <queue>
 #include <string>
-#include <vector>
+using namespace std;
+
+// Implementación de la clase nodoArbol
+nodoArbol::nodoArbol(int val) : valor(val), izquierda(nullptr), derecha(nullptr) {}
+
+nodoArbol::nodoArbol(int val, nodoArbol* izq, nodoArbol* der) : valor(val), izquierda(izq), derecha(der) {}
 
 // Constructor
-template <typename T>
-ABB<T>::ABB() : raiz(nullptr) {}
+ArbolBinarioBusqueda::ArbolBinarioBusqueda() : raiz(nullptr) {}
 
 // Destructor
-template <typename T>
-ABB<T>::~ABB() {
+ArbolBinarioBusqueda::~ArbolBinarioBusqueda() {
     destruir(raiz);
 }
 
 // Destruir el árbol
-template <typename T>
-void ABB<T>::destruir(Nodo<T>* nodo) {
+void ArbolBinarioBusqueda::destruir(pnodoArbol nodo) {
     if (nodo) {
         destruir(nodo->izquierda);
         destruir(nodo->derecha);
@@ -29,27 +28,24 @@ void ABB<T>::destruir(Nodo<T>* nodo) {
 }
 
 // Verificar si el árbol está vacío
-template <typename T>
-bool ABB<T>::estaVacio() {
+bool ArbolBinarioBusqueda::estaVacio() {
     return raiz == nullptr;
 }
 
 // Insertar un valor en el árbol
-template <typename T>
-void ABB<T>::insertar(const T& valor) {
+void ArbolBinarioBusqueda::insertar(int valor) {
     raiz = insertar(raiz, valor);
 }
 
 // Método auxiliar para insertar un valor
-template <typename T>
-Nodo<T>* ABB<T>::insertar(Nodo<T>* nodo, const T& valor) {
+pnodoArbol ArbolBinarioBusqueda::insertar(pnodoArbol nodo, int valor) {
     if (nodo == nullptr) {
-        return new Nodo<T>(valor);
+        return new nodoArbol(valor);
     }
 
-    if (valor < nodo->dato) {
+    if (valor < nodo->valor) {
         nodo->izquierda = insertar(nodo->izquierda, valor);
-    } else if (valor > nodo->dato) {
+    } else if (valor > nodo->valor) {
         nodo->derecha = insertar(nodo->derecha, valor);
     }
 
@@ -57,19 +53,17 @@ Nodo<T>* ABB<T>::insertar(Nodo<T>* nodo, const T& valor) {
 }
 
 // Buscar un valor en el árbol
-template <typename T>
-bool ABB<T>::buscar(const T& valor) {
+bool ArbolBinarioBusqueda::buscar(int valor) {
     return buscar(raiz, valor) != nullptr;
 }
 
 // Método auxiliar para buscar un valor
-template <typename T>
-Nodo<T>* ABB<T>::buscar(Nodo<T>* nodo, const T& valor) {
-    if (nodo == nullptr || nodo->dato == valor) {
+pnodoArbol ArbolBinarioBusqueda::buscar(pnodoArbol nodo, int valor) {
+    if (nodo == nullptr || nodo->valor == valor) {
         return nodo;
     }
 
-    if (valor < nodo->dato) {
+    if (valor < nodo->valor) {
         return buscar(nodo->izquierda, valor);
     } else {
         return buscar(nodo->derecha, valor);
@@ -77,21 +71,19 @@ Nodo<T>* ABB<T>::buscar(Nodo<T>* nodo, const T& valor) {
 }
 
 // Eliminar un valor del árbol
-template <typename T>
-void ABB<T>::eliminar(const T& valor) {
+void ArbolBinarioBusqueda::eliminar(int valor) {
     raiz = eliminar(raiz, valor);
 }
 
 // Método auxiliar para eliminar un valor
-template <typename T>
-Nodo<T>* ABB<T>::eliminar(Nodo<T>* nodo, const T& valor) {
+pnodoArbol ArbolBinarioBusqueda::eliminar(pnodoArbol nodo, int valor) {
     if (nodo == nullptr) {
         return nullptr;
     }
 
-    if (valor < nodo->dato) {
+    if (valor < nodo->valor) {
         nodo->izquierda = eliminar(nodo->izquierda, valor);
-    } else if (valor > nodo->dato) {
+    } else if (valor > nodo->valor) {
         nodo->derecha = eliminar(nodo->derecha, valor);
     } else {
         // Caso 1: Nodo hoja (sin hijos)
@@ -101,19 +93,19 @@ Nodo<T>* ABB<T>::eliminar(Nodo<T>* nodo, const T& valor) {
         }
         // Caso 2: Nodo con un hijo
         else if (nodo->izquierda == nullptr) {
-            Nodo<T>* temp = nodo->derecha;
+            pnodoArbol temp = nodo->derecha;
             delete nodo;
             return temp;
         } else if (nodo->derecha == nullptr) {
-            Nodo<T>* temp = nodo->izquierda;
+            pnodoArbol temp = nodo->izquierda;
             delete nodo;
             return temp;
         }
         // Caso 3: Nodo con dos hijos
         else {
-            Nodo<T>* temp = encontrarMinimo(nodo->derecha);
-            nodo->dato = temp->dato;
-            nodo->derecha = eliminar(nodo->derecha, temp->dato);
+            pnodoArbol temp = encontrarMinimo(nodo->derecha);
+            nodo->valor = temp->valor;
+            nodo->derecha = eliminar(nodo->derecha, temp->valor);
         }
     }
 
@@ -121,9 +113,8 @@ Nodo<T>* ABB<T>::eliminar(Nodo<T>* nodo, const T& valor) {
 }
 
 // Encontrar el nodo con el valor mínimo
-template <typename T>
-Nodo<T>* ABB<T>::encontrarMinimo(Nodo<T>* nodo) {
-    Nodo<T>* actual = nodo;
+pnodoArbol ArbolBinarioBusqueda::encontrarMinimo(pnodoArbol nodo) {
+    pnodoArbol actual = nodo;
 
     while (actual && actual->izquierda != nullptr) {
         actual = actual->izquierda;
@@ -133,77 +124,70 @@ Nodo<T>* ABB<T>::encontrarMinimo(Nodo<T>* nodo) {
 }
 
 // Mostrar el árbol en orden (inorden)
-template <typename T>
-void ABB<T>::mostrarInOrden() {
+void ArbolBinarioBusqueda::mostrarInOrden() {
     if (estaVacio()) {
-        std::cout << "El árbol está vacío." << std::endl;
+        cout << "El árbol está vacío." << endl;
         return;
     }
 
-    std::cout << "Recorrido InOrden: ";
+    cout << "Recorrido InOrden: ";
     inOrden(raiz);
-    std::cout << std::endl;
+    cout << endl;
 }
 
 // Método auxiliar para recorrido inorden
-template <typename T>
-void ABB<T>::inOrden(Nodo<T>* nodo) {
+void ArbolBinarioBusqueda::inOrden(pnodoArbol nodo) {
     if (nodo) {
         inOrden(nodo->izquierda);
-        std::cout << nodo->dato << " ";
+        cout << nodo->valor << " ";
         inOrden(nodo->derecha);
     }
 }
 
 // Mostrar el árbol en preorden
-template <typename T>
-void ABB<T>::mostrarPreOrden() {
+void ArbolBinarioBusqueda::mostrarPreOrden() {
     if (estaVacio()) {
-        std::cout << "El árbol está vacío." << std::endl;
+        cout << "El árbol está vacío." << endl;
         return;
     }
 
-    std::cout << "Recorrido PreOrden: ";
+    cout << "Recorrido PreOrden: ";
     preOrden(raiz);
-    std::cout << std::endl;
+    cout << endl;
 }
 
 // Método auxiliar para recorrido preorden
-template <typename T>
-void ABB<T>::preOrden(Nodo<T>* nodo) {
+void ArbolBinarioBusqueda::preOrden(pnodoArbol nodo) {
     if (nodo) {
-        std::cout << nodo->dato << " ";
+        cout << nodo->valor << " ";
         preOrden(nodo->izquierda);
         preOrden(nodo->derecha);
     }
 }
 
 // Mostrar el árbol en postorden
-template <typename T>
-void ABB<T>::mostrarPostOrden() {
+void ArbolBinarioBusqueda::mostrarPostOrden() {
     if (estaVacio()) {
-        std::cout << "El árbol está vacío." << std::endl;
+        cout << "El árbol está vacío." << endl;
         return;
     }
 
-    std::cout << "Recorrido PostOrden: ";
+    cout << "Recorrido PostOrden: ";
     postOrden(raiz);
-    std::cout << std::endl;
+    cout << endl;
 }
 
 // Método auxiliar para recorrido postorden
-template <typename T>
-void ABB<T>::postOrden(Nodo<T>* nodo) {
+void ArbolBinarioBusqueda::postOrden(pnodoArbol nodo) {
     if (nodo) {
         postOrden(nodo->izquierda);
         postOrden(nodo->derecha);
-        std::cout << nodo->dato << " ";
+        cout << nodo->valor << " ";
     }
 }
 
 // Calcular la altura del árbol
-template <typename T>
-int ABB<T>::altura(Nodo<T>* nodo) {
+int ArbolBinarioBusqueda::altura(pnodoArbol nodo) {
     if (nodo == nullptr) {
         return 0;
     }
@@ -215,17 +199,16 @@ int ABB<T>::altura(Nodo<T>* nodo) {
 }
 
 // Imprimir un nivel específico del árbol
-template <typename T>
-void ABB<T>::imprimirNivel(Nodo<T>* nodo, int nivel, int espacio) {
+void ArbolBinarioBusqueda::imprimirNivel(pnodoArbol nodo, int nivel, int espacio) {
     if (nodo == nullptr) {
         if (nivel == 1) {
-            std::cout << std::setw(espacio) << " ";
+            cout << setw(espacio) << " ";
         }
         return;
     }
 
     if (nivel == 1) {
-        std::cout << std::setw(espacio) << nodo->dato;
+        cout << setw(espacio) << nodo->valor;
     } else if (nivel > 1) {
         imprimirNivel(nodo->izquierda, nivel - 1, espacio);
         imprimirNivel(nodo->derecha, nivel - 1, espacio);
@@ -233,76 +216,73 @@ void ABB<T>::imprimirNivel(Nodo<T>* nodo, int nivel, int espacio) {
 }
 
 // Visualización básica del árbol
-template <typename T>
-void ABB<T>::visualizarArbol() {
+void ArbolBinarioBusqueda::visualizarArbol() {
     if (estaVacio()) {
-        std::cout << "El árbol está vacío." << std::endl;
+        cout << "El árbol está vacío." << endl;
         return;
     }
 
     int h = altura(raiz);
     int espacio = 4;
 
-    std::cout << "Visualización del árbol:" << std::endl;
-    std::cout << "------------------------" << std::endl;
+    cout << "Visualización del árbol:" << endl;
+    cout << "------------------------" << endl;
 
     for (int i = 1; i <= h; i++) {
         imprimirNivel(raiz, i, (1 << (h - i)) * espacio);
-        std::cout << std::endl;
+        cout << endl;
     }
 }
 
 // Visualización detallada del árbol (más interactiva)
-template <typename T>
-void ABB<T>::visualizarArbolDetallado() {
+void ArbolBinarioBusqueda::visualizarArbolDetallado() {
     if (estaVacio()) {
-        std::cout << "El árbol está vacío." << std::endl;
+        cout << "El árbol está vacío." << endl;
         return;
     }
 
-    std::cout << "\nVisualización Detallada del Árbol" << std::endl;
-    std::cout << "=================================" << std::endl;
+    cout << "\nVisualización Detallada del Árbol" << endl;
+    cout << "=================================" << endl;
 
-    std::queue<std::pair<Nodo<T>*, std::string>> cola;
+    queue<pair<pnodoArbol, string>> cola;
     cola.push({raiz, "Raíz"});
 
     while (!cola.empty()) {
         int nivelSize = cola.size();
 
         for (int i = 0; i < nivelSize; i++) {
-            auto [nodo, posicion] = cola.front();
+            pnodoArbol nodo = cola.front().first;
+            string posicion = cola.front().second;
             cola.pop();
 
-            std::cout << posicion << ": " << nodo->dato;
+            cout << posicion << ": " << nodo->valor;
 
             // Mostrar información de hijos
             if (nodo->izquierda || nodo->derecha) {
-                std::cout << " (";
+                cout << " (";
 
                 if (nodo->izquierda) {
-                    std::cout << "Izq=" << nodo->izquierda->dato;
+                    cout << "Izq=" << nodo->izquierda->valor;
                     cola.push({nodo->izquierda, posicion + " -> Izq"});
                 } else {
-                    std::cout << "Izq=NULL";
+                    cout << "Izq=NULL";
                 }
 
-                std::cout << ", ";
+                cout << ", ";
 
                 if (nodo->derecha) {
-                    std::cout << "Der=" << nodo->derecha->dato;
+                    cout << "Der=" << nodo->derecha->valor;
                     cola.push({nodo->derecha, posicion + " -> Der"});
                 } else {
-                    std::cout << "Der=NULL";
+                    cout << "Der=NULL";
                 }
 
-                std::cout << ")";
+                cout << ")";
             }
 
-            std::cout << std::endl;
+            cout << endl;
         }
 
-        std::cout << std::endl;  // Separación entre niveles
+        cout << endl;  // Separación entre niveles
     }
 }
-
-#endif // ABB_CPP
