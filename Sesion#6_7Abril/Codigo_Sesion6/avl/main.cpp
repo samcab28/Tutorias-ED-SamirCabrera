@@ -10,7 +10,7 @@ int main() {
     // Insertar elementos para demostrar las rotaciones
     cout << "\nInsertando elementos en el árbol AVL:" << endl;
     
-    int valores[] = {50, 30, 70, 20, 40, 60, 80, 15, 25, 35, 45};
+    int valores[] = {50, 30, 70, 20, 40, 60, 80, 15, 25, 35, 45, 5, 1};
     int numValores = sizeof(valores) / sizeof(valores[0]);
     
     for (int i = 0; i < numValores; i++) {
@@ -27,8 +27,8 @@ int main() {
     miArbolAVL.mostrarPostOrden();
     
     // Visualización detallada
-    cout << "\nVisualización detallada del árbol AVL:" << endl;
-    miArbolAVL.visualizarArbolDetallado();
+    //cout << "\nVisualización detallada del árbol AVL:" << endl;
+    //miArbolAVL.visualizarArbolDetallado();
     
     // Demostrar búsqueda
     int valorBuscar = 40;
