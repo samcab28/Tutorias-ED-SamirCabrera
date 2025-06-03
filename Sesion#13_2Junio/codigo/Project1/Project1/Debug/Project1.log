@@ -1,0 +1,16 @@
+﻿  ventanaPrincipal.cpp
+C:\Users\pamre\source\repos\Project1\Project1\ventanaPrincipal.h(292,39): warning C4101: 'ex': unreferenced local variable
+  (compiling source file 'ventanaPrincipal.cpp')
+  
+C:\Users\pamre\source\repos\Project1\Project1\ventanaPrincipal.h(307,39): warning C4101: 'ex': unreferenced local variable
+  (compiling source file 'ventanaPrincipal.cpp')
+  
+C:\Users\pamre\source\repos\Project1\Project1\ventanaPrincipal.h(324,39): warning C4101: 'ex': unreferenced local variable
+  (compiling source file 'ventanaPrincipal.cpp')
+  
+C:\Users\pamre\source\repos\Project1\Project1\ventanaPrincipal.h(368,39): warning C4101: 'ex': unreferenced local variable
+  (compiling source file 'ventanaPrincipal.cpp')
+  
+C:\Users\pamre\source\repos\Project1\Project1\ventanaPrincipal.cpp(6,6): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
+  listaSimple.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  Project1.vcxproj -> C:\Users\pamre\source\repos\Project1\Debug\Project1.exe
